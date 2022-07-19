@@ -15,7 +15,7 @@ export function Button({ title, ...rest }: ButtonProps) {
       { ...rest }
     >
       <Heading color="white" fontSize="sm">
-        Entrar
+        {title}
       </Heading>
     </NativeBaseButton>
   );
