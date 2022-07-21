@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { Center, FlatList, Heading, HStack, IconButton, Text, useTheme, VStack } from 'native-base';
 import { ChatTeardropText, SignOut } from 'phosphor-react-native';
 import { useState } from 'react';
@@ -10,9 +11,24 @@ import { Order, OrderProps } from '../components/Order';
 
 export function Home() {
   const [statusSelected, setStatusSelected] = useState<'open' | 'closed'>('open')
-  const [orders, setOrders] = useState<OrderProps[]>([])
+  const [orders, setOrders] = useState<OrderProps[]>([{
+    id: '123',
+    patrimony: '123456',
+    when: '22/10/22 às 14h',
+    status: 'open' 
+  }])
 
   const {colors} = useTheme()
+
+  const navigation = useNavigation()
+
+  function handleNewOrder() {
+    navigation.navigate('new')
+  }
+
+  function handleOrderDetails(orderId: string) {
+    navigation.navigate('details', { orderId })
+  }
 
   return (
     <VStack flex={1} pb={16} bg="gray.700">
@@ -38,7 +54,7 @@ export function Home() {
           </Heading>
 
           <Text color="gray.200">
-            1
+            {orders.length}
           </Text>
         </HStack>
 
@@ -56,6 +72,7 @@ export function Home() {
               patrimony={item.patrimony} 
               status={item.status} 
               when={item.when} 
+              onPress={() => handleOrderDetails(item.id)}
             />
           }
           showsVerticalScrollIndicator={false}
@@ -70,7 +87,7 @@ export function Home() {
           )}
         />
 
-        <Button title="Nova Solicitação" />
+        <Button title="Nova Solicitação" onPress={handleNewOrder} />
       </VStack>
 
     </VStack>
