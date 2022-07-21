@@ -7,7 +7,7 @@ import { AppRoutes } from "./app.routes";
 import { Loading } from "../components/Loading";
 
 export function Routes() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [user, setUser] = useState<FirebaseAuthTypes.User>()
 
   if(loading) {

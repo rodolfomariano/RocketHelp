@@ -28,7 +28,7 @@ export function Order({id, patrimony, when, status, ...rest}: OrderProps) {
         <VStack flex={1} my={5} ml={5}>
           <HStack alignItems="center" mb={1} >
             <ClockAfternoon color={colors.gray[300]} size={14} />
-            <Text color="gray.300" fontSize="2xs" ml={1}> 20/11/22 às 14h</Text>
+            <Text color="gray.300" fontSize="2xs" ml={1}> {when}</Text>
           </HStack>
 
           <Text color="gray.300" fontSize="sm">Patrimônio: <Text color={statusColor} fontSize="lg">{patrimony}</Text></Text>
