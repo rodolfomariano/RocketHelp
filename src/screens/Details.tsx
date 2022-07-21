@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Box, HStack, ScrollView, Text, useTheme, VStack } from 'native-base';
 import firestore from '@react-native-firebase/firestore'
-import { CircleWavyCheck, DesktopTower, Hourglass, Clipboard } from 'phosphor-react-native';
+import { CircleWavyCheck, DesktopTower, Hourglass, ClipboardText } from 'phosphor-react-native';
 
 import { dateFormat } from '../utils/firestoreDateFormat';
 import { OrderFirestoreDTO } from '../DTOs/OrderFirestoreDTO';
@@ -104,20 +104,20 @@ export function Details() {
           title="equipamento"
           description={`Patrimônio ${order.patrimony}`}
           icon={DesktopTower}
-          footer={order.when}
         />
 
         <CardDetails 
           title="descrição do problema"
           description={order.description}
-          icon={Clipboard}
+          icon={ClipboardText}
+          footer={`Aberto em: ${order.when}`}
         />
 
         <CardDetails 
-          title="dsolução"
+          title="solução"
           icon={CircleWavyCheck}
           description={order.solution}
-          footer={order.closed && `Encerrado em ${order.closed}`}
+          footer={order.closed && `Encerrado em: ${order.closed}`}
         >
           {order.status === 'open'
             && (
